@@ -1,0 +1,2 @@
+# diksi
+String library sederhana
