@@ -1,2 +1,3 @@
 # Diksi
-String library sederhana
+String library sederhana menggunakan bahasa Pemrograman C
+
