@@ -12,7 +12,7 @@ extern "C" {
 diksi_s Diksi_CreateString(const char * characters)
 {
 	size_t text_length = (sizeof(char) * strlen(characters)) + 1; // +1 for null terminator
-	diksi_s text = malloc(text_length);
+	diksi_s text = (diksi_s)malloc(text_length);
 	if (text)
 	{
 		text[text_length - 1] = '\0'; // add null terminator
@@ -28,7 +28,7 @@ diksi_s Diksi_CreateString(const char * characters)
 diksi_s Diksi_CreateStringWithSize(const char * characters, size_t size)
 {
 	size_t text_length = (sizeof(char) * size) + 1;
-	diksi_s text = malloc(text_length);
+	diksi_s text = (diksi_s)malloc(text_length);
 	if (text)
 	{
 		text[text_length - 1] = '\0';
@@ -43,7 +43,7 @@ diksi_s Diksi_CreateStringWithSize(const char * characters, size_t size)
 diksi_s Diksi_CreateEmptyStringWithSize(size_t size)
 {
 	size_t text_length = (sizeof(char) * size) + 1;
-	diksi_s text = malloc(text_length);
+	diksi_s text = (diksi_s)malloc(text_length);
 	if (text)
 	{
 		text[text_length - 1] = '\0';
@@ -82,8 +82,7 @@ diksi_s Diksi_EmptyString(diksi_s string)
 {
 	Diksi_FreeString(string);
 
-	// Create empty 8 bytes of characters
-	diksi_s text = malloc((sizeof(char) * 7) + 1);
+	diksi_s text = (diksi_s)malloc((sizeof(char) * 7) + 1);
 	if (text)
 	{
 		return text;

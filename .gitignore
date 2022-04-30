@@ -7,8 +7,8 @@
 *.vs
 build
 intermediate
-Main.c
-Main.cpp
+main.c
+main.cpp
 
 
 # Compiled Object files
