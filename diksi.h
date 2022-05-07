@@ -15,10 +15,9 @@ diksi_s Diksi_CreateString(const char * characters)
 	diksi_s text = (diksi_s)malloc(text_length);
 	if (text)
 	{
-		text[text_length - 1] = '\0'; // add null terminator
-
 		diksi_s text_first_address = text;
 		memcpy(text, characters, text_length);
+		text[text_length - 1] = '\0'; // add null terminator
 		return text_first_address;
 	}
 
@@ -31,8 +30,8 @@ diksi_s Diksi_CreateStringWithSize(const char * characters, size_t size)
 	diksi_s text = (diksi_s)malloc(text_length);
 	if (text)
 	{
-		text[text_length - 1] = '\0';
 		memcpy(text, characters, text_length);
+		text[text_length - 1] = '\0';
 
 		return text;
 	}
@@ -44,6 +43,7 @@ diksi_s Diksi_CreateEmptyStringWithSize(size_t size)
 {
 	size_t text_length = (sizeof(char) * size) + 1;
 	diksi_s text = (diksi_s)malloc(text_length);
+	memset(text, 0, text_length);
 	if (text)
 	{
 		text[text_length - 1] = '\0';
@@ -83,6 +83,7 @@ diksi_s Diksi_EmptyString(diksi_s string)
 	Diksi_FreeString(string);
 
 	diksi_s text = (diksi_s)malloc((sizeof(char) * 7) + 1);
+	memset(text, 0, (sizeof(char) * 7) + 1);
 	if (text)
 	{
 		return text;
@@ -91,7 +92,7 @@ diksi_s Diksi_EmptyString(diksi_s string)
 	return 0;
 }
 
-diksi_s Diksi_AppendString(diksi_s dest, const char * text)
+diksi_s Diksi_PushBackString(diksi_s dest, const char * text)
 {
 	if (dest)
 	{
@@ -102,9 +103,9 @@ diksi_s Diksi_AppendString(diksi_s dest, const char * text)
 		diksi_s buffer = Diksi_CreateEmptyStringWithSize(total_length);
 		if (buffer)
 		{
-			buffer[total_length - 1] = '\0';
 			memcpy(buffer, dest, text_dest_length); // Copy the first bytes of the string
 			memcpy(buffer + text_dest_length, text, text_src_length); // Copy the second bytes of the string
+			buffer[total_length - 1] = '\0';
 
 			Diksi_FreeString(dest);
 
